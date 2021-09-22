@@ -85,7 +85,7 @@ class Blog extends Component {
               Delete Post
             </button>
             <Link to={`/edit/${this.props.match.params.id}`}>
-              <button className={"btn btn-primary"}>Edit Post</button>
+              <button className={"btn btn-primary mx-3"}>Edit Post</button>
             </Link>
             <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
           </Container>
