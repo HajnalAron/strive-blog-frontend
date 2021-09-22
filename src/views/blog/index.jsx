@@ -39,6 +39,7 @@ class Blog extends Component {
   };
 
   componentDidMount = async () => {
+    console.log(backendUrl);
     await this.getPosts();
     const { id } = this.props.match.params;
     console.log(this.state.posts);
