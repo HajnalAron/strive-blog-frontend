@@ -27,9 +27,12 @@ class Blog extends Component {
 
   deletePost = async (id) => {
     try {
-      const resp = await fetch(`${backendUrl} + /blogposts/ + ${id}`, {
-        method: "DELETE"
-      });
+      const resp = await fetch(
+        `${backendUrl} + /blogposts/ + ${this.props.match.params.id}`,
+        {
+          method: "DELETE"
+        }
+      );
       if (resp) {
         let response = await resp.json();
         console.log(response);
@@ -70,7 +73,7 @@ class Blog extends Component {
               )}
               <div className="blog-details-info">
                 <div>{new Date(blog.createdAt).toLocaleDateString()}</div>
-                {/* <div>{`${blog.readTime.value} ${blog.readTime.unit} read`}</div> */}
+                <div>{`${blog.readTime.readTimeValue} ${blog.readTime.readTimeUnit} read`}</div>
               </div>
             </div>
             <button
