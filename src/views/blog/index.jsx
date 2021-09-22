@@ -25,28 +25,32 @@ class Blog extends Component {
     } catch (error) {}
   };
 
-  deletePost = async (id) => {
+  deletePost = async () => {
+    console.log(this.props.match.params.id);
+    console.log(backendUrl);
     try {
       const resp = await fetch(
-        `${backendUrl} + /blogposts/ + ${this.props.match.params.id}`,
+        backendUrl + /blogposts/ + this.props.match.params.id,
         {
           method: "DELETE"
         }
       );
       if (resp) {
-        let response = await resp.json();
-        console.log(response);
         this.setState({ isLoading: true });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   componentDidMount = async () => {
     console.log(backendUrl);
+    console.log(this.props.match.params.id);
     await this.getPosts();
     const { id } = this.props.match.params;
     console.log(this.state.posts);
     const blog = this.state.posts.find((post) => post.id.toString() === id);
+    console.log(blog);
     if (blog) {
       this.setState({ blog, loading: false });
     } else {
@@ -68,7 +72,7 @@ class Blog extends Component {
             <div className="blog-details-container">
               {blog.author && (
                 <div className="blog-details-author">
-                  <BlogAuthor {...blog.author} />
+                  <BlogAuthor author={blog.author} />
                 </div>
               )}
               <div className="blog-details-info">
@@ -79,7 +83,7 @@ class Blog extends Component {
             <button
               className={"btn btn-danger"}
               onClick={() => {
-                this.deletePost(blog.id);
+                this.deletePost();
               }}
             >
               Delete Post
