@@ -3,6 +3,7 @@ import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { Container, Form, Button } from "react-bootstrap";
 import "./styles.css";
+import { backendUrl } from "../../Utilities/config";
 export default class NewBlogPost extends Component {
   constructor(props) {
     super(props);
